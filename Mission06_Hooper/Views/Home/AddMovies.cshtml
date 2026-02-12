@@ -1,0 +1,62 @@
+﻿@model Mission06_Hooper.Models.Movie
+
+<div class="text-center">
+    <h1 class="display-4">Add Movies</h1>
+</div>
+
+<form asp-action="AddMovie" asp-controller="Home" method="post">
+    <label>
+        Category *<br>
+        <input asp-for="Category" type="text" required>
+    </label><br><br>
+
+    <label>
+        Title *<br>
+        <input asp-for="Title" required>
+    </label><br><br>
+
+    <label>
+        Year *<br>
+        <input asp-for="Year" type="number" required>
+    </label><br><br>
+
+    <label>
+        Director *<br>
+        <input asp-for="Director" required>
+    </label><br><br>
+
+    <label>
+        Rating *<br>
+        <select asp-for="RatingId" required>
+            <option value="">--Select--</option>
+            @if (ViewBag.Ratings != null)
+            {
+                @foreach (var rating in ViewBag.Ratings)
+                {
+                    <option value="@rating.RatingId">@rating.RatingName</option>
+                }
+            }
+        </select>
+    </label><br><br>
+
+    <label>
+        Edited<br>
+        <select asp-for="Edited">
+            <option value="">--Select--</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </label><br><br>
+
+    <label>
+        Lent To<br>
+        <input asp-for="LentTo">
+    </label><br><br>
+
+    <label>
+        Notes<br>
+        <input asp-for="Notes" maxlength="25">
+    </label><br><br>
+
+    <button type="submit">Submit</button>
+</form>
