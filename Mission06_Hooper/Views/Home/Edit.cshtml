@@ -1,11 +1,16 @@
 ﻿@model Mission06_Hooper.Models.Movie
 
+@{
+    ViewData["Title"] = "Edit Movie";
+}
+
 <div class="text-center">
-    <h1 class="display-4">Add Movie</h1>
+    <h1 class="display-4">Edit Movie</h1>
 </div>
 
-<!-- Form to add new movie -->
-<form asp-action="AddMovie" asp-controller="Home" method="post">
+<!-- Edit form - hidden field for MovieId -->
+<form asp-action="Edit" asp-controller="Home" method="post">
+    <input type="hidden" asp-for="MovieId" />
 
     <!-- Category dropdown -->
     <label>
@@ -37,13 +42,13 @@
         <input asp-for="Director" required>
     </label><br><br>
 
-    <!-- Rating text input (e.g., G, PG, R) -->
+    <!-- Rating text input -->
     <label>
         Rating *<br>
-        <input asp-for="Rating" required placeholder="G, PG, PG-13, R, etc.">
+        <input asp-for="Rating" required>
     </label><br><br>
 
-    <!-- Edited - required yes/no -->
+    <!-- Edited - required -->
     <label>
         Edited *<br>
         <select asp-for="Edited" required>
@@ -53,7 +58,7 @@
         </select>
     </label><br><br>
 
-    <!-- CopiedToPlex - required yes/no -->
+    <!-- CopiedToPlex - required -->
     <label>
         Copied to Plex *<br>
         <select asp-for="CopiedToPlex" required>
@@ -74,8 +79,8 @@
         <input asp-for="Notes" maxlength="25">
     </label><br><br>
 
-    <button type="submit">Add Movie</button>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="MovieList" class="btn btn-secondary">Cancel</a>
 </form>
 
-<!-- Validation summary -->
 <div asp-validation-summary="All" class="text-danger"></div>
